@@ -35,8 +35,9 @@
       Доп. опции
     </div>
     <div class="additional__console">
-      <label>
-        <input type="checkbox">
+      <label v-for="(console, ind) of formShells.additionalTypes" :key="ind + 'additionalTypes'">
+        <input type="checkbox" :value="console.value" v-model="formData.additionalTypes" @click="submit">
+        {{console.name}}
       </label>
     </div>
   </div>
@@ -49,6 +50,7 @@ export default {
       power: '2,2',
       directorType: 'switchDirectly',
       shellType: 'plastic',
+      additionalTypes: ['fireAlert', 'LedIndication']
     },
     formShells: {
       directorTypes: [
@@ -69,6 +71,20 @@ export default {
         {
           name: 'Металл',
           value: 'iron'
+        }
+      ],
+      additionalTypes: [
+        {
+          name: 'Сигнал "Пожар"',
+          value: 'fireAlert'
+        },
+        {
+          name: 'LED-индикация',
+          value: 'LedIndication'
+        },
+        {
+          name: 'Диспетчеризация',
+          value: 'dispatching'
         }
       ]
     }
